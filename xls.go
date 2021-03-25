@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"xls/ole2"
+	"github.com/fangguangyang/xls/ole2"
 )
 
 // OpenReader opens an XLS file from r with charset.

@@ -1,4 +1,4 @@
-module xls
+module github.com/fangguangyang/xls
 
 go 1.16
 
