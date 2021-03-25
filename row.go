@@ -14,18 +14,18 @@ type rowInfo struct {
 type Row struct {
 	wb   *WorkBook
 	info *rowInfo
-	cols map[uint16]contentHandler
+	Cols map[uint16]contentHandler
 }
 
 // Col gets the n'th column (zero-based). If not found it will return empty string.
 // Merged cells will be reported more then once if iterating.
 func (r *Row) Col(n int) string {
 	serial := uint16(n)
-	if ch, ok := r.cols[serial]; ok {
+	if ch, ok := r.Cols[serial]; ok {
 		strs := ch.String(r.wb)
 		return strs[0]
 	}
-	for _, v := range r.cols {
+	for _, v := range r.Cols {
 		if v.FirstCol() <= serial && v.LastCol() >= serial {
 			strs := v.String(r.wb)
 			return strs[serial-v.FirstCol()]
@@ -38,7 +38,7 @@ func (r *Row) Col(n int) string {
 // Merged cells will only show the value at the first cell.
 func (r *Row) ColExact(n int) string {
 	serial := uint16(n)
-	if ch, ok := r.cols[serial]; ok {
+	if ch, ok := r.Cols[serial]; ok {
 		strs := ch.String(r.wb)
 		for _, s := range strs {
 			if len(s) == 0 {
@@ -54,7 +54,7 @@ func (r *Row) ColExact(n int) string {
 // Value of the cell.
 func (r *Row) Value(n int) CellValue {
 	serial := uint16(n)
-	if ch, ok := r.cols[serial]; ok {
+	if ch, ok := r.Cols[serial]; ok {
 		return ch.Value(r.wb)
 	}
 	return CellValue{}

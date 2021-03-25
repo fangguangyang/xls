@@ -336,10 +336,10 @@ func (w *WorkBook) ReadAll(max int) (res [][]string) {
 					leng = max
 				}
 				temp := make([][]string, leng)
-				for k, row := range sheet.rows {
+				for k, row := range sheet.Rows {
 					data := make([]string, 0)
-					if len(row.cols) > 0 {
-						for _, col := range row.cols {
+					if len(row.Cols) > 0 {
+						for _, col := range row.Cols {
 							if uint16(len(data)) <= col.LastCol() {
 								data = append(data, make([]string, col.LastCol()-uint16(len(data))+1)...)
 							}
