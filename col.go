@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kardianos/xls/yymmdd"
+	"xls/yymmdd"
 )
 
 type CellValue struct {
